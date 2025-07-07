@@ -1,0 +1,8 @@
+*.model filter=lfs diff=lfs merge=lfs -text
+*.optim filter=lfs diff=lfs merge=lfs -text
+*.bin filter=lfs diff=lfs merge=lfs -text
+**/results/**/*.weights filter=lfs diff=lfs merge=lfs -text
+**/a2/coding/data/* filter=lfs diff=lfs merge=lfs -text
+**/a3/coding/zh_en_data/* filter=lfs diff=lfs merge=lfs -text
+**/a3/coding/sanity_check_en_es_data/* filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
