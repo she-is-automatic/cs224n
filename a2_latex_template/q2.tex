@@ -17,8 +17,13 @@
                 	\bm_{t+1} &\gets \beta_1\bm_{t} + (1 - \beta_1)\nabla_{\btheta_t} J_{\text{minibatch}}(\btheta_t) \\
                 	\btheta_{t+1} &\gets \btheta_t - \alpha \bm_{t+1}
                 }
-                where $\beta_1$ is a hyperparameter between 0 and 1 (often set to  0.9). Briefly explain in 2--4 sentences (you don't need to prove mathematically, just give an intuition) how using $\bm$ stops the updates from varying as much and why this low variance may be helpful to learning, overall.\newline
-              
+                where $\beta_1$ is a hyperparameter between 0 and 1 (often set to  0.9). Briefly explain in 2--4 sentences (you don't need to prove mathematically, just give an intuition) how using $\bm$ stops the updates from varying as much and why this low variance may be helpful to learning, overall.
+
+                \ifans{
+                    \newline
+                    The momentum term $\bm$ is an exponential moving average of past gradients. It helps learning by smoothing out the update steps. If gradients oscillate, the moving average dampens these oscillations, preventing the optimizer from bouncing back and forth. If gradients consistently point in the same direction, momentum builds up, accelerating convergence much like a ball rolling downhill.
+                }
+                \newline
                 
             \subpart[2] Adam extends the idea of {\it momentum} with the trick of {\it adaptive learning rates} by keeping track of  $\bv$, a rolling average of the magnitudes of the gradients:
                 \alns{
@@ -28,8 +33,11 @@
                 }
                 where $\odot$ and $/$ denote elementwise multiplication and division (so $\bz \odot \bz$ is elementwise squaring) and $\beta_2$ is a hyperparameter between 0 and 1 (often set to  0.99). Since Adam divides the update by $\sqrt{\bv}$, which of the model parameters will get larger updates?  Why might this help with learning?
                 
+                \ifans{
+                    \newline
+                    Dividing the update by  $\sqrt{\bv_t}$ (the moving average of squared gradients) provides each parameter with its own adaptive learning rate. For parameters with large gradients, $\bv_t$ is large, which makes the effective learning rate smaller to prevent overshooting. Conversely, for parameters with small gradients, $\bv_t$ is small, which makes the learning rate larger to speed up progress in flat regions of the loss landscape.
+                }
            
-                
                 \end{subparts}
         
         
@@ -48,8 +56,24 @@
             \subpart[2]
                 What must $\gamma$ equal in terms of $p_{\text{drop}}$? Briefly justify your answer or show your math derivation using the equations given above.
                 
+                \ifans{
+                    \newline
+                    The expected value of $\bh_{\text{drop}}$ is:
+                    \alns{
+                        \mathbb{E}_{p_{\text{drop}}}[\bh_\text{drop}]_i = \mathbb{E}_{p_{\text{drop}}}[\gamma d_i h_i] = \gamma h_i \mathbb{E}_{p_{\text{drop}}}[d_i] = \gamma h_i (1 - p_{\text{drop}}) = h_i
+                    }
+                    Hence, $\gamma = \frac{1}{1 - p_{\text{drop}}}$.
+                }
+
+                
             
-          \subpart[2] Why should dropout be applied during training? Why should dropout \textbf{NOT} be applied during evaluation? \textbf{Hint:} it may help to look at the dropout paper linked. \newline
+            \subpart[2] Why should dropout be applied during training? Why should dropout \textbf{NOT} be applied during evaluation? \textbf{Hint:} it may help to look at the dropout paper linked. \newline
+            \ifans{
+                \newline
+                Dropout's purpose is to inject noise into the training process by randomly setting activations to zero. This prevents neurons from co-adapting and forces the network to learn more robust and redundant features, improving generalization.
+
+                During evaluation, we want a deterministic result that uses the full learned capacity of the network to make the best possible prediction. Randomly dropping neurons at test time would produce a noisy and inconsistent output. The scaling factor $\gamma$ (inverted dropout) is specifically designed to compensate for the absence of dropout at test time.
+            }
           
          
         \end{subparts}
