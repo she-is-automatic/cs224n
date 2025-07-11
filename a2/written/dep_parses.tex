@@ -22,8 +22,15 @@ DET \& NOUN \& VERB \& DET \& NOUN \& PUNCT \& VERB \& NOUN \& ADP \& DET \& NOU
 \depedge[edge unit distance=1.7ex]{3}{13}{punct}
 \end{dependency}
  }
- \end{center}
+\end{center}
 
+\ifans{
+    \begin{itemize}
+        \item \textbf{Error type}: Verb Phrase Attachment Error
+        \item \textbf{Incorrect dependency}: acquisition $\rightarrow$ citing 
+        \item \textbf{Correct dependency}: blocked $\rightarrow$ citing
+    \end{itemize}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -56,6 +63,14 @@ ii. \\
  }
  \end{center}
 
+
+ \ifans{
+    \begin{itemize}
+        \item \textbf{Error type}: Modifier Attachment Error
+        \item \textbf{Incorrect dependency}: elements $\rightarrow$ most
+        \item \textbf{Correct dependency}: crutial $\rightarrow$ most
+    \end{itemize}
+ }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \medskip
@@ -87,6 +102,14 @@ NOUN \& PROPN \& VERB \& PART \& VERB \& ADP \& DET \& NOUN \& ADP \& DET \& NOU
  }
  \end{center}
 
+ \ifans{
+    \begin{itemize}
+        \item \textbf{Error type}: Prepositional Phrase Attachment Error
+        \item \textbf{Incorrect dependency}: declined $\rightarrow$ decision
+        \item \textbf{Correct dependency}: reasons $\rightarrow$ decision
+    \end{itemize}
+ }
+
 iv. \\
  \begin{center}
  {\small
@@ -114,3 +137,11 @@ NOUN \& VERB \& ADP \& DET \& ADJ \& NOUN \& PRON \& VERB \& NUM \& PROPN \& NOU
 \end{dependency}
  }
  \end{center}
+
+    \ifans{
+        \begin{itemize}
+            \item \textbf{Error type}: Coordination Attachment Error
+            \item \textbf{Incorrect dependency}: affects $\rightarrow$ one
+            \item \textbf{Correct dependency}: plants $\rightarrow$ one
+        \end{itemize}
+    }
