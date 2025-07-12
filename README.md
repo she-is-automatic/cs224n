@@ -12,3 +12,4 @@ My schedule is as belows.
 - 2025/07/09: Lecture 4
 - 2025/07/10: Pytorch Review Session and assignment 2 Part 1
 - 2025/07/11: assignment 2 Part 2 and Part 3
+- 2025/07/12: Lecture 5
