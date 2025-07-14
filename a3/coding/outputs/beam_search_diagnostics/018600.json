@@ -1,0 +1,235 @@
+{
+    "example_source": [
+        "▁我还",
+        "澄清",
+        "了",
+        "在该",
+        "会议上",
+        "提出的",
+        "若干",
+        "事项",
+        "。"
+    ],
+    "example_target": [
+        "<s>",
+        "▁i",
+        "▁was",
+        "▁able",
+        "▁to",
+        "▁provide",
+        "▁clarification",
+        "▁on",
+        "▁some",
+        "▁of",
+        "▁the",
+        "▁matters",
+        "▁which",
+        "▁were",
+        "▁raised",
+        "▁at",
+        "▁that",
+        "▁meeting",
+        ".",
+        "</s>"
+    ],
+    "hypotheses": [
+        {
+            "hypothesis": [
+                "▁clarification",
+                "▁was",
+                "▁also",
+                "▁given",
+                "▁to",
+                "▁a",
+                "▁number",
+                "▁of",
+                "▁matters",
+                "▁raised",
+                "▁at",
+                "▁the",
+                "▁meeting",
+                "."
+            ],
+            "score": -9.268787384033203
+        },
+        {
+            "hypothesis": [
+                "▁clarification",
+                "▁was",
+                "▁also",
+                "▁given",
+                "▁to",
+                "▁a",
+                "▁number",
+                "▁of",
+                "▁matters",
+                "▁raised",
+                "▁dur",
+                "ing",
+                "▁the",
+                "▁meeting",
+                "."
+            ],
+            "score": -9.46543025970459
+        },
+        {
+            "hypothesis": [
+                "▁clarification",
+                "▁was",
+                "▁also",
+                "▁given",
+                "▁to",
+                "▁a",
+                "▁number",
+                "▁of",
+                "▁matters",
+                "▁raised",
+                "▁by",
+                "▁the",
+                "▁meeting",
+                "."
+            ],
+            "score": -9.590710639953613
+        },
+        {
+            "hypothesis": [
+                "▁clarification",
+                "▁was",
+                "▁also",
+                "▁given",
+                "▁to",
+                "▁a",
+                "▁number",
+                "▁of",
+                "▁matters",
+                "▁raised",
+                "▁by",
+                "▁the",
+                "▁conference",
+                "."
+            ],
+            "score": -9.595634460449219
+        },
+        {
+            "hypothesis": [
+                "▁clarification",
+                "▁was",
+                "▁also",
+                "▁given",
+                "▁to",
+                "▁a",
+                "▁number",
+                "▁of",
+                "▁matters",
+                "▁raised",
+                "▁at",
+                "▁the",
+                "▁conference",
+                "."
+            ],
+            "score": -9.82619857788086
+        },
+        {
+            "hypothesis": [
+                "▁clarification",
+                "▁was",
+                "▁also",
+                "▁given",
+                "▁to",
+                "▁a",
+                "▁number",
+                "▁of",
+                "▁matters",
+                "▁raised",
+                "▁dur",
+                "ing",
+                "▁the",
+                "▁conference",
+                "."
+            ],
+            "score": -9.862969398498535
+        },
+        {
+            "hypothesis": [
+                "▁clarification",
+                "▁has",
+                "▁also",
+                "▁been",
+                "▁clarified",
+                "▁to",
+                "▁a",
+                "▁number",
+                "▁of",
+                "▁matters",
+                "▁raised",
+                "▁at",
+                "▁the",
+                "▁meeting",
+                "."
+            ],
+            "score": -10.154646873474121
+        },
+        {
+            "hypothesis": [
+                "▁clarification",
+                "▁has",
+                "▁also",
+                "▁been",
+                "▁clarified",
+                "▁to",
+                "▁a",
+                "▁number",
+                "▁of",
+                "▁matters",
+                "▁raised",
+                "▁by",
+                "▁the",
+                "▁meeting",
+                "."
+            ],
+            "score": -10.220577239990234
+        },
+        {
+            "hypothesis": [
+                "▁clarification",
+                "▁has",
+                "▁also",
+                "▁been",
+                "▁clarified",
+                "▁to",
+                "▁a",
+                "▁number",
+                "▁of",
+                "▁matters",
+                "▁raised",
+                "▁dur",
+                "ing",
+                "▁the",
+                "▁meeting",
+                "."
+            ],
+            "score": -10.344026565551758
+        },
+        {
+            "hypothesis": [
+                "▁clarification",
+                "▁has",
+                "▁also",
+                "▁been",
+                "▁given",
+                "▁to",
+                "▁a",
+                "▁number",
+                "▁of",
+                "▁matters",
+                "▁raised",
+                "▁by",
+                "▁the",
+                "▁meeting",
+                "."
+            ],
+            "score": -10.595013618469238
+        }
+    ],
+    "diagnostic_info": "eyJ0IjogIjIwMjUtMDctMTRUMTA6MTk6MDcuODE2MTc1IiwgImgiOiAiVk0tMC04MC11YnVudHUiLCAidSI6ICJyb290In0="
+}
