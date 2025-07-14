@@ -187,13 +187,17 @@ sh run.sh test
 \end{lstlisting}
     Please report the model's corpus BLEU Score. It should be larger than 18.
     
-
+    \textcolor{red}{\textbf{Solution: } Corpus BLEU: 20.590272135180697}
     
     \part[4] (written) In class, we learned about dot product attention, multiplicative attention, and additive attention.  As a reminder, dot product attention is $\be_{t,i} = \bs_t^T\bh_i$, multiplicative attention is $\be_{t,i} = \bs_t^T\bW\bh_i$, and additive attention is $\be_{t,i} = \bv^T \text{tanh}(\bW_1\bh_i + \bW_2\bs_t)$.
     
     \begin{subparts}
     \subpart[2] Explain one advantage and one disadvantage of \textit{dot product attention} compared to multiplicative attention.
+
+    \textcolor{red}{\textbf{Solution: } Dot product attention is simpler to implement than multiplicative attention, as it does not require an additional weight matrix $\bW$. However, dot product attention can be less expressive than multiplicative attention, as it does not allow for learned transformations of the hidden states.}
     \subpart[2] Explain one advantage and one disadvantage of \textit{additive attention} compared to multiplicative attention.
+
+    \textcolor{red}{\textbf{Solution: } Additive attention is more flexible than multiplicative attention, as it allows for learned transformations of both the hidden states and the decoder state. However, it is computationally more expensive than multiplicative attention, as it requires an additional matrix multiplication and a non-linear activation function.}
     \end{subparts}
             
     
