@@ -1,8 +1,22 @@
+# Git LFS tracking rules for specific large files
+# 仅追踪明显较大的文件和数据集
+
+# 模型文件 (Model files)
 *.model filter=lfs diff=lfs merge=lfs -text
 *.optim filter=lfs diff=lfs merge=lfs -text
 *.bin filter=lfs diff=lfs merge=lfs -text
 **/results/**/*.weights filter=lfs diff=lfs merge=lfs -text
+# 数据文件 (Data files)
+# a2/coding/data/ 目录下的所有文件
 **/a2/coding/data/* filter=lfs diff=lfs merge=lfs -text
+# a3/coding/zh_en_data/ 目录下的所有文件
 **/a3/coding/zh_en_data/* filter=lfs diff=lfs merge=lfs -text
+# a3/coding/sanity_check_en_es_data/ 目录下的所有文件 (虽然单个小，但如果累计起来多且希望追踪)
 **/a3/coding/sanity_check_en_es_data/* filter=lfs diff=lfs merge=lfs -text
+# 大的归档文件 (Large archive files)
 *.zip filter=lfs diff=lfs merge=lfs -text
+# 如果你确定需要LFS管理这些特定的大图片或大PDF，请取消注释。
+# 基于你之前的数据，图片和PDF大小都在几百K，Git可以直接处理，LFS不是必须的。
+# **/*.png filter=lfs diff=lfs merge=lfs -text
+# **/*.jpg filter=lfs diff=lfs merge=lfs -text
+# **/*.pdf filter=lfs diff=lfs merge=lfs -text

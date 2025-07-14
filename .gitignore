@@ -1,0 +1,48 @@
+# Python compilation and runtime files
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/ # Jupyter Notebook checkpoints
+
+# LaTeX compilation intermediate files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.dvi
+*.ps
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.idx
+*.ind
+*.ilg
+*.gz
+*.xdv
+**/*_minted-main/ # LaTeX minted environment temporary directories
+
+# Output/Results directories or temporary timestamped folders
+# 只忽略 results 目录下时间戳格式的子文件夹
+**/results/*_*_*_*_*_*_*_* / # Example: 20250712_004236 ( trailing slash ensures it's a directory)
+
+# IDE and OS specific files (根据你提供的du输出，这些不需要LFS，只需忽略)
+.DS_Store # macOS
+Thumbs.db # Windows
+desktop.ini # Windows
+*.swp # Vim swap files
+*~ # Emacs backup files
+# .idea/ # IntelliJ/PyCharm project files, uncomment if applicable
