@@ -17,3 +17,5 @@ My schedule is as belows.
 - 2025/07/14: Rest of assignment 3 coding and written
 - 2025/07/15：Lecture 7
 - 2025/07/17: Lecture 8
+- 2025/07/18: Lecture 0 and assignment 4
+- 2025/07/19: assignment 4
