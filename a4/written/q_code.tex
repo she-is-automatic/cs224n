@@ -159,6 +159,11 @@ python src/run.py evaluate vanilla wiki.txt  \
 
 We expect the dev accuracy will be at least 15\%, and will expect a similar accuracy on the held out test set.
 
+\ifans{
+        \newline
+        The dev accuracy of the pretrain-finetune model is $112 / 500 = 22.4\%$.
+}
+
 \part[11] \textbf{Write and try out a different kind of position embeddings (Budget about 1 hour for training)}\\
 
 In the previous part, you used the vanilla Transformer model, which used learned positional embeddings. In the written part, you also learned about the sinusoidal positional embeddings used in the original Transformer paper. In this part, you'll implement a different kind of positional embedding, called \textit{RoPE} (Rotary Positional Embedding) \cite{su2024roformer}.
@@ -216,7 +221,27 @@ For higher dimensional feature vectors, this interpretation allows us to compute
 
 Show that the elements of the vector in Equation~\ref{eq:rope_matrix} can be obtained from Equation~\ref{eq:rope_elementwise}. Note that some additional operations like reshaping are necessary to make the two expressions equal but you do not need to provide a detailed derivation for full points. 
 
-\ifans{}
+\ifans{
+        \newline
+        The $j$-th elements of vector in Equation~\ref{eq:rope_elementwise} can be written as:
+        \begin{align*}
+                &(\cos t\theta_j + i\sin t\theta_j)\cdot(x_t^{2j-1} + ix_t^{2j}) \\
+                =& \cos t\theta_j x_t^{2j-1} + i\cos t\theta_j x_t^{2j} + i\sin t\theta_j x_t^{2j-1} - \sin t\theta_j x_t^{2j} \\
+                =& \begin{pmatrix}
+                    \cos t\theta_j x_t^{2j-1} - \sin t\theta_j x_t^{2j} \\
+                    \sin t\theta_j x_t^{2j-1} + \cos t\theta_j x_t^{2j}
+                \end{pmatrix}\\
+                =& \begin{pmatrix}
+                    \cos t\theta_j & -\sin t\theta_j \\
+                    \sin t\theta_j & \cos t\theta_j
+                \end{pmatrix}
+                \begin{pmatrix}
+                    x_t^{2j-1} \\
+                    x_t^{2j}
+                \end{pmatrix}
+        \end{align*}
+        Thus, the $j$-th element of the vector in Equation~\ref{eq:rope_matrix} can be obtained from Equation~\ref{eq:rope_elementwise} by reshaping the complex number into a 2D vector and applying the rotation matrix.
+}
 
 \subpart[1] \textbf{Relative Embeddings.} Now we will show that the dot product of the RoPE embeddings of two vectors at positions $t_1$ and $t_2$ depends on the relative position $t_1 - t_2$ only. 
 
@@ -226,7 +251,30 @@ Show that $\langle \text{RoPE}(z_1, t_1), \text{RoPE}(z_2, t_2) \rangle = \langl
 
 (Hint: Dot product of vectors represented as complex numbers is given by $\langle z_1, z_2 \rangle = \Re(\overline{z_1} z_2)$. For a complex number $z = a + ib\ (a,b\in\R$), $\Re(z) = a$ indicates the real component of $z$ and $\bar{z} = a - ib$ is the complex conjugate of $z$.)
 
-\ifans{}
+\ifans{
+        \newline
+        We can write the RoPE embeddings as:
+        \begin{align*}
+                \text{RoPE}(z_1, t_1) &= e^{it_1\theta} z_1 = (\cos(t_1\theta) + i\sin(t_1\theta))(a + ib) \\
+                \text{RoPE}(z_2, t_2) &= e^{it_2\theta} z_2 = (\cos(t_2\theta) + i\sin(t_2\theta))(c + id)
+        \end{align*}
+        The dot product is given by:
+        \begin{align*}
+                &\langle \text{RoPE}(z_1, t_1), \text{RoPE}(z_2, t_2) \rangle = \Re(\overline{\text{RoPE}(z_1, t_1)} \cdot \text{RoPE}(z_2, t_2)) \\
+                =& \Re((\cos(t_1\theta) - i\sin(t_1\theta))(a - ib) \cdot (\cos(t_2\theta) + i\sin(t_2\theta))(c + id)) \\
+                =& \Re((\cos(t_1\theta)a + \sin(t_1\theta)b)(\cos(t_2\theta)c + \sin(t_2\theta)d) + i(\sin(t_1\theta)a - \cos(t_1\theta)b)(-\sin(t_2\theta)c + \cos(t_2\theta)d)) \\
+                =& \cos(t_1\theta)a\cos(t_2\theta)c + \sin(t_1\theta)b\cos(t_2\theta)d + \sin(t_1\theta)a\sin(t_2\theta)c - \cos(t_1\theta)b\sin(t_2\theta)d \\
+                =& \cos((t_1 - t_2)\theta)a c + \sin((t_1 - t_2)\theta)b d
+        \end{align*}
+        Now, we can rewrite the dot product in terms of the relative position $t_1 - t_2$:
+        \begin{align*}
+                \langle \text{RoPE}(z_1, t_1 - t_2), \text{RoPE}(z_2, 0) \rangle &= \Re(\overline{\text{RoPE}(z_1, t_1 - t_2)} \cdot \text{RoPE}(z_2, 0)) \\
+                &= \Re((\cos((t_1 - t_2)\theta) - i\sin((t_1 - t_2)\theta))(a - ib) \cdot (c + id)) \\
+                &= \Re((\cos((t_1 - t_2)\theta)a + \sin((t_1 - t_2)\theta)b)(c + id)) \\
+                &= \cos((t_1 - t_2)\theta)a c + \sin((t_1 - t_2)\theta)b d
+        \end{align*}
+        Thus, we can see that the dot product depends only on the relative position $t_1 - t_2$ and not on the absolute positions $t_1$ and $t_2$.
+}
 
 
 \subpart[8] In the provided code, RoPE is implemented using the functions \texttt{precompute\_rotary\_emb} and \texttt{apply\_rotary\_emb} in \texttt{src/attention.py}. You need to implement these functions and the parts of code marked \texttt{[part g]} in \texttt{src/attention.py} and \texttt{src/run.py} to use RoPE in the model.

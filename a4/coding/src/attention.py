@@ -38,7 +38,14 @@ def precompute_rotary_emb(dim, max_positions):
     rope_cache = None
     # TODO: [part g]
     ### YOUR CODE HERE ###
-    pass
+    
+    theta = torch.arange(dim // 2, dtype=torch.float32) / (dim // 2)
+    theta = 1 / (10000 ** theta)
+    positions = torch.arange(max_positions, dtype=torch.float32).unsqueeze(1)
+    cos_values = torch.cos(positions * theta)
+    sin_values = torch.sin(positions * theta)
+    rope_cache = torch.stack((cos_values, sin_values), dim=-1)  # shape: (max_positions, dim/2, 2)
+
     ### END YOUR CODE ###
     return rope_cache
 
@@ -58,7 +65,21 @@ def apply_rotary_emb(x, rope_cache):
 
     rotated_x = None
     ### YOUR CODE HERE ###
-    pass
+    b, h, l, d = x.shape # (batch_size, nu_head, seq_len, head_dim)
+
+    # truncate the rope_cache if necessary
+    rope_cache = rope_cache[:l, :, :]
+
+    # Group the embedding dimension by a factor of 2
+    x = x.reshape(b, h, l, d // 2, 2)
+
+    # Apply RoPE following eq (4) in pdf
+    rope_cache = rope_cache[None, None, ...]
+    rotated_x = torch.view_as_complex(rope_cache) * torch.view_as_complex(x)  # (b, h, l, d // 2)
+
+    # Recover the original dimension 
+    rotated_x = torch.view_as_real(rotated_x).reshape(b, h, l, d)
+
     ### END YOUR CODE ###
     return rotated_x
 
