@@ -1,0 +1,4 @@
+Fine-tuning the last linear layer for SST: 0.465
+Fine-tuning the last linear layer for CFIMDB: 0.878
+Fine-tuning the full model for SST: 0.520
+Fine-tuning the full model for CFIMDB: 0.959
