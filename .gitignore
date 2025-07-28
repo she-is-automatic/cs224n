@@ -10,6 +10,8 @@ venv/
 .pytest_cache/
 .mypy_cache/
 .ipynb_checkpoints/ # Jupyter Notebook checkpoints
+.vscode
+test.ipynb
 
 # LaTeX compilation intermediate files
 *.aux
@@ -46,3 +48,5 @@ desktop.ini # Windows
 *.swp # Vim swap files
 *~ # Emacs backup files
 # .idea/ # IntelliJ/PyCharm project files, uncomment if applicable
+
+*.pt
